@@ -1,11 +1,13 @@
 #!/bin/sh
 
+set -e
+
 rm -rf tmp
 
 mkdir tmp
 cd tmp
 
-paper_version='1.16.5'
+paper_version='1.19.3'
 
 # Fetch Paper Minecraft server from official website
 LATEST_BUILD=$(curl -X GET "https://papermc.io/api/v2/projects/paper/versions/${paper_version}" -H  "accept: application/json" | jq '.builds[-1]')
@@ -14,6 +16,10 @@ curl -o paperclip.jar -X GET "https://papermc.io/api/v2/projects/paper/versions/
 
 cd ..
 
-docker build --tag minecraft_server:latest .
+docker build --tag cocopaps/minecraft_server:latest .
+rm -rf tmp
 
-terraform apply -auto-approuve
+docker push cocopaps/minecraft_server:latest
+
+terraform init
+terraform apply -auto-approve

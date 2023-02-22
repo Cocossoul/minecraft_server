@@ -9,6 +9,10 @@
     - { role: ssh_hardening, tags: ssh_hardening }
     - { role: core, tags: core }
     - { role: docker, tags: docker }
+  tasks:
+    - name: Allow Minecraft server port in firewall
+      become: true
+      ansible.builtin.command: ufw allow 25565
   vars:
     ssh_pam_support: false
     ssh_use_pam: false
