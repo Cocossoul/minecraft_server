@@ -1,0 +1,8 @@
+minecraft_server:
+  hosts:
+    base:
+      ansible_host: ${ minecraft_server_ip }
+      ansible_port: 22
+  vars:
+    ansible_user: coco
+    ansible_host_key_checking: no
