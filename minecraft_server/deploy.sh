@@ -2,10 +2,8 @@
 
 set -e
 
-rm -rf tmp
-
-mkdir tmp
-cd tmp
+mkdir -p config
+cd config
 
 paper_version='1.19.3'
 
@@ -17,7 +15,6 @@ curl -o paperclip.jar -X GET "https://papermc.io/api/v2/projects/paper/versions/
 cd ..
 
 docker build --tag cocopaps/minecraft_server:latest .
-rm -rf tmp
 
 docker push cocopaps/minecraft_server:latest
 
