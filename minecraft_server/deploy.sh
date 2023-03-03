@@ -16,6 +16,8 @@ cd ..
 
 docker build --tag cocopaps/minecraft_server:latest .
 
+rm config/paperclip.jar
+
 docker push cocopaps/minecraft_server:latest
 
 terraform init
